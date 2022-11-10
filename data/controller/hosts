@@ -1,0 +1,9 @@
+node1 ansible_ssh_host=node1 ansible_ssh_port=22 ansible_python_interpreter=/usr/local/bin/python3.10
+node2 ansible_ssh_host=node2 ansible_ssh_port=22 ansible_python_interpreter=/usr/local/bin/python3.10
+node3 ansible_ssh_host=node3 ansible_ssh_port=22 ansible_python_interpreter=/usr/local/bin/python3.10
+
+[local]
+
+node1
+node2
+node3

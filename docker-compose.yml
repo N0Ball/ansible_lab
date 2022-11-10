@@ -1,0 +1,48 @@
+version: '3'
+
+services:
+  controller:
+    build:
+      context: ./dockerfile
+      dockerfile: ansible_controller.Dockerfile
+    image: ansible-controller
+    user: ${UID}:${GID}
+    volumes:
+      - ${HOME}/.ssh/id_rsa:/home/controller/.ssh/id_rsa:ro
+      - ${PWD}/data/controller:/etc/ansible
+
+  node1:
+    build:
+      context: ./dockerfile
+      dockerfile: ansible_node.Dockerfile
+      args: 
+        - SSH_PUB_KEY=$SSH_PUB_KEY
+    image: ansible-node
+    user: ${UID}:${GID}
+    volumes:
+      - ${PWD}/data/node1:/data
+    expose:
+      - 22
+
+  node2:
+    build:
+      context: ./dockerfile
+      dockerfile: ansible_node.Dockerfile
+      args: 
+        - SSH_PUB_KEY=$SSH_PUB_KEY
+    image: ansible-node
+    user: ${UID}:${GID}
+    expose:
+      - 22
+
+  node3:
+    build:
+      context: ./dockerfile
+      dockerfile: ansible_node.Dockerfile
+      args: 
+        - SSH_PUB_KEY=$SSH_PUB_KEY
+    image: ansible-node
+    user: ${UID}:${GID}
+    expose:
+      - 22
+    
