@@ -1,0 +1,22 @@
+terraform {
+  required_providers {
+    proxmox = {
+      source  = "telmate/proxmox"
+      version = "2.9.11"
+    }
+  }
+}
+
+provider "proxmox" {
+  pm_api_url          = "https://localhost:8006/api2/json"
+  pm_api_token_id     = "terraform@pve!terraform-token"
+  pm_api_token_secret = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+
+  pm_log_enable = true
+  pm_log_file = "tfstate.log"
+  pm_debug = true
+  pm_log_levels = {
+  _default = "debug"
+  _capturelog = ""
+  }
+}
